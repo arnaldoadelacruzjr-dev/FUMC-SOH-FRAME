@@ -125,6 +125,8 @@ data.image;
 publicLink =
 `${window.location.origin}/FUMC-SOH-FRAME/Frame/frame.html?id=${frameId}`;
 
+console.log("PUBLIC LINK:", publicLink);
+
 frameLink.value =
 publicLink;
 
