@@ -120,7 +120,7 @@ async function loadFrame(){
         data.image;
 
         publicLink =
-        `${window.location.origin}/Frame/frame.html?id=${frameId}`;
+        `${window.location.origin} /FUMC-SOH-FRAME/Frame/frame.html?id=${frameId}`;
 
         frameLink.value =
         publicLink;
