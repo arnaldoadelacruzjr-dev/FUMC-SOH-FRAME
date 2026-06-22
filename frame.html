@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+FUMC Frame Creator
+</title>
+
+<link
+rel="stylesheet"
+href="css/frame.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 id="frameTitle">
+Loading...
+</h1>
+
+<label
+for="photoInput"
+class="uploadBtn">
+
+📸 Upload Photo
+
+</label>
+
+<input
+type="file"
+id="photoInput"
+accept="image/*">
+
+<div class="canvasBox">
+
+<canvas
+id="previewCanvas">
+</canvas>
+
+</div>
+
+<div class="controls">
+
+<p>Zoom</p>
+
+<input
+type="range"
+id="zoom"
+min="0.5"
+max="3"
+step="0.1"
+value="1">
+
+<button
+id="downloadBtn">
+
+Download Frame
+
+</button>
+
+</div>
+
+</div>
+
+<script
+type="module"
+src="js/frame.js">
+</script>
+
+</body>
+
+</html>
