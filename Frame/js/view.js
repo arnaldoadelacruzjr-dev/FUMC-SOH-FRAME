@@ -175,7 +175,7 @@ editBtn.addEventListener(
 ()=>{
 
     window.location.href =
-    `newframe.html?id=${frameId}`;
+    `frame.html?id=${frameId}`;
 
 });
 
