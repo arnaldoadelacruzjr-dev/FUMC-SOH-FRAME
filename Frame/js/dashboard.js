@@ -116,7 +116,7 @@ try{
         data.title || "Untitled Frame";
 
         const frameLink =
-        `${window.location.origin}/frame.html?id=${frameDoc.id}`;
+        `${window.location.origin}/FUMC-SOH-FRAME/Frame/frame.html?id=${frameDoc.id}`;
 
         html +=
 
