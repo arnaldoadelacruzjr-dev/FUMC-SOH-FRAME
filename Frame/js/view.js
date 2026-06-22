@@ -1,14 +1,14 @@
 import { auth, db } from "./firebase-config.js";
 
 import {
-doc,
-getDoc,
-deleteDoc
+    doc,
+    getDoc,
+    deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import {
-onAuthStateChanged
+    onAuthStateChanged
 }
 from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
@@ -52,93 +52,88 @@ onAuthStateChanged(
 auth,
 (user)=>{
 
-if(!user){
+    if(!user){
 
-window.location.href =
-"login.html";
+        window.location.href =
+        "login.html";
 
-return;
+        return;
 
-}
+    }
 
-if(
-user.email !==
-ADMIN_EMAIL
-){
+    if(
+        user.email !==
+        ADMIN_EMAIL
+    ){
 
-window.location.href =
-"login.html";
+        window.location.href =
+        "login.html";
 
-return;
+        return;
 
-}
+    }
 
-loadFrame();
+    loadFrame();
 
-}
-);
+});
 
 /* LOAD FRAME */
 
 async function loadFrame(){
 
-try{
+    try{
 
-const frameRef =
-doc(
-db,
-"frames",
-frameId
-);
+        const frameRef =
+        doc(
+            db,
+            "frames",
+            frameId
+        );
 
-const frameSnap =
-await getDoc(
-frameRef
-);
+        const frameSnap =
+        await getDoc(
+            frameRef
+        );
 
-if(
-!frameSnap.exists()
-){
+        if(
+            !frameSnap.exists()
+        ){
 
-alert(
-"Frame Not Found"
-);
+            alert(
+            "Frame Not Found"
+            );
 
-window.location.href =
-"dashboard.html";
+            window.location.href =
+            "dashboard.html";
 
-return;
+            return;
 
-}
+        }
 
-const data =
-frameSnap.data();
+        const data =
+        frameSnap.data();
 
-frameTitle.innerHTML =
-data.title;
+        frameTitle.innerHTML =
+        data.title;
 
-preview.src =
-data.image;
+        preview.src =
+        data.image;
 
-/* PUBLIC LINK */
+        publicLink =
+        `${window.location.origin}/Frame/frame.html?id=${frameId}`;
 
-publicLink =
-`${window.location.origin}/FUMC-SOH-FRAME/Frame/frame.html?id=${frameId}`;
+        frameLink.value =
+        publicLink;
 
-console.log("PUBLIC LINK:", publicLink);
+    }
 
-frameLink.value =
-publicLink;
+    catch(error){
 
-}
+        alert(
+        error.message
+        );
 
-catch(error){
-
-alert(
-error.message
-);
-
-}
+    }
 
 }
 
@@ -148,17 +143,15 @@ copyBtn.addEventListener(
 "click",
 ()=>{
 
-navigator.clipboard
-.writeText(
-publicLink
-)
-.then(()=>{
+    navigator.clipboard
+    .writeText(publicLink)
+    .then(()=>{
 
-alert(
-"Link Copied!"
-);
+        alert(
+        "Link Copied!"
+        );
 
-});
+    });
 
 });
 
@@ -168,10 +161,10 @@ openBtn.addEventListener(
 "click",
 ()=>{
 
-window.open(
-publicLink,
-"_blank"
-);
+    window.open(
+        publicLink,
+        "_blank"
+    );
 
 });
 
@@ -181,8 +174,8 @@ editBtn.addEventListener(
 "click",
 ()=>{
 
-window.location.href =
-`newframe.html?id=${frameId}`;
+    window.location.href =
+    `newframe.html?id=${frameId}`;
 
 });
 
@@ -192,40 +185,40 @@ deleteBtn.addEventListener(
 "click",
 async ()=>{
 
-const confirmDelete =
-confirm(
-"Delete this frame?"
-);
+    const confirmDelete =
+    confirm(
+    "Delete this frame?"
+    );
 
-if(
-!confirmDelete
-) return;
+    if(
+        !confirmDelete
+    ) return;
 
-try{
+    try{
 
-await deleteDoc(
-doc(
-db,
-"frames",
-frameId
-)
-);
+        await deleteDoc(
+            doc(
+                db,
+                "frames",
+                frameId
+            )
+        );
 
-alert(
-"Frame Deleted!"
-);
+        alert(
+        "Frame Deleted!"
+        );
 
-window.location.href =
-"dashboard.html";
+        window.location.href =
+        "dashboard.html";
 
-}
+    }
 
-catch(error){
+    catch(error){
 
-alert(
-error.message
-);
+        alert(
+        error.message
+        );
 
-}
+    }
 
 });
